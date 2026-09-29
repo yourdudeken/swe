@@ -20,7 +20,13 @@ Update an existing installation:
 curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/update.sh | bash
 ```
 
-Both commands operate on the current directory by default. They download the
+Remove the pack from the current project:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/uninstall.sh | bash
+```
+
+Both install/update commands operate on the current directory by default. They download the
 latest release archive and manage only `opencode.jsonc`, `AGENTS.md`, and
 `.opencode/`; all other files in the project are preserved. Existing
 `opencode.json`/`opencode.jsonc` and `AGENTS.md` files are never overwritten;
