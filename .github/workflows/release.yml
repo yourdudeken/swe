@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate OpenCode definitions
+        run: bash scripts/validate.sh
+
+  release:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine next version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest_tag="$(git tag --list 'v*' --sort=-version:refname | head -n 1)"
+          if [[ -z "$latest_tag" ]]; then
+            latest_tag="v0.0.0"
+          fi
+
+          version="${latest_tag#v}"
+          IFS=. read -r major minor patch <<< "$version"
+          next_tag="v${major}.${minor}.$((patch + 1))"
+          echo "tag=$next_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Build release archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          cp opencode.jsonc AGENTS.md release/
+          cp -a .opencode release/
+          tar -czf opencode-swe.tar.gz -C release .
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          gh release create "$TAG" opencode-swe.tar.gz \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --generate-notes

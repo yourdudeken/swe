@@ -1,0 +1,5 @@
+# Ignore local OpenCode / editor noise
+node_modules/
+.DS_Store
+*.log
+.opencode/cache/
