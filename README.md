@@ -10,8 +10,12 @@ workflows.
 - `swe` — default master agent overseeing the full SWE workflow.
 - `swe-plan` — spec and plan authoring with human approval gates.
 - `swe-build` — implementation, testing, and verification agent.
-- Specialist agents for exploration, debugging, testing, review, security,
-  performance, dependencies, Git, and documentation.
+- Specialist agents for exploration, debugging, testing, architecture, review,
+  security, threat modeling, accessibility, data privacy, observability,
+  release readiness, incident response, performance, dependencies, Git, and
+  documentation.
+- Safety controls for destructive commands, lifecycle approvals, secret checks,
+  diff checks, and scoped agent permissions.
 - Reusable skills, protocols, slash commands, and workflows for consistent
   delivery.
 
@@ -45,6 +49,17 @@ plans before building.
 
 See [Usage](docs/USAGE.md) for the command reference, workflow, and project
 layout.
+
+Validate the installed system and run its local guards with:
+
+```bash
+bash scripts/validate.sh
+bash scripts/guard-lifecycle.sh diff
+bash scripts/guard-lifecycle.sh secrets
+```
+
+Use `/swe-threat-model`, `/swe-release`, `/swe-incident`, `/swe-ops-review`,
+`/swe-accessibility`, and `/swe-contract` for production-facing quality gates.
 
 ## Documentation
 
