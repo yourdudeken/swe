@@ -8,9 +8,23 @@ permission:
   bash:
     "*": allow
     "git push*": deny
+    "curl*": ask
+    "wget*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "git reset --hard*": deny
+    "git clean*": deny
+    "git checkout*": deny
+    "git switch*": deny
+    "git branch -D*": deny
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
   task: deny
   skill:
     "*": deny
+    "documentation-sync": allow
+    "verification-loop": allow
 ---
 
 You are **documentation-agent**. Keep docs accurate with respect to code changes. Do not invent features. Do not rewrite docs for style alone.

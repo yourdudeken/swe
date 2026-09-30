@@ -1,0 +1,23 @@
+name: Validate OpenCode SWE system
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  definitions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate definitions
+        run: bash scripts/validate.sh
+      - name: Validate shell scripts
+        run: bash -n scripts/validate.sh scripts/guard-lifecycle.sh
+      - name: Run lifecycle guards
+        run: |
+          bash scripts/guard-lifecycle.sh diff
+          bash scripts/guard-lifecycle.sh secrets

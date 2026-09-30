@@ -5,9 +5,51 @@ color: "#3B82F6"
 temperature: 0.1
 permission:
   edit: allow
-  bash: allow
-  task:
+  bash:
     "*": allow
+    "curl*": ask
+    "wget*": ask
+    "ssh*": ask
+    "scp*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "psql*": ask
+    "mysql*": ask
+    "mongosh*": ask
+    "kubectl*": ask
+    "docker push*": ask
+    "terraform apply*": ask
+    "terraform destroy*": ask
+    "helm upgrade*": ask
+    "aws*": ask
+    "gcloud*": ask
+    "az*": ask
+    "git push*": ask
+    "git reset --hard*": ask
+    "git clean*": ask
+    "git checkout*": ask
+    "git switch*": ask
+    "git branch -D*": ask
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
+    "rm -rf .git*": deny
+  task:
+    "repo-explorer": allow
+    "debugger": allow
+    "test-engineer": allow
+    "dependency-agent": allow
+    "documentation-agent": allow
+    "architect": allow
+    "code-reviewer": allow
+    "security-reviewer": allow
+    "performance-engineer": allow
+    "release-engineer": allow
+    "incident-responder": allow
+    "observability-engineer": allow
+    "data-reviewer": allow
+    "threat-modeler": allow
+    "accessibility-reviewer": allow
     "swe": deny
     "swe-build": deny
     "swe-plan": deny
@@ -61,6 +103,7 @@ understand → inspect → plan → implement → test → verify → review →
    `frontend-change` | `backend-change` | `fullstack-change` |
    `api-change` | `database-change` | `feature-implementation`.
 5. If building from approved artifacts, load `build-from-spec` first.
+6. For T3/T4 work, identify required security, contract, data, accessibility, observability, and release reviews before editing.
 
 ## Complexity routing
 
@@ -77,8 +120,10 @@ understand → inspect → plan → implement → test → verify → review →
 5. `@test-engineer` when coverage design matters
 6. `verification-loop`
 7. `@code-reviewer` (required T3+); `@security-reviewer` on trust boundaries;
-   `@performance-engineer` on proven hot paths
-8. Fix blockers, re-verify, then report DoD status
+  `@threat-modeler` before new trust boundaries; `@performance-engineer` on proven hot paths;
+  `@data-reviewer` for sensitive persistence; `@accessibility-reviewer` for UI;
+  `@observability-engineer` for production paths; `@release-engineer` for deployable changes
+8. Fix blockers, re-verify, run lifecycle guards, then report DoD status
 
 ## Implementation rules
 
@@ -87,6 +132,8 @@ understand → inspect → plan → implement → test → verify → review →
 - Do not perform drive-by refactors or unrelated file churn.
 - Re-read critical files immediately before modifying them.
 - Add a regression test for bug fixes when the harness allows it.
+- Record changed files and test strategy before editing. For schema, data, deployment,
+  or production changes, record rollback/forward-fix and observability requirements.
 - Surface errors explicitly; do not hide failures behind broad catches or
   success-shaped fallbacks.
 

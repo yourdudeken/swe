@@ -25,7 +25,7 @@ archive="$temporary_directory/opencode-swe.tar.gz"
 curl --fail --location --silent --show-error "$release_url" --output "$archive"
 tar -xzf "$archive" -C "$temporary_directory"
 
-for required_path in opencode.jsonc AGENTS.md .opencode; do
+for required_path in opencode.jsonc AGENTS.md .opencode scripts/validate.sh scripts/guard-lifecycle.sh; do
   if [[ ! -e "$temporary_directory/$required_path" ]]; then
     printf 'Release archive is missing %s\n' "$required_path" >&2
     exit 1
@@ -48,5 +48,8 @@ fi
 
 mkdir -p "$target/.opencode"
 cp -a "$temporary_directory/.opencode/." "$target/.opencode/"
+mkdir -p "$target/scripts"
+cp "$temporary_directory/scripts/validate.sh" "$target/scripts/validate.sh"
+cp "$temporary_directory/scripts/guard-lifecycle.sh" "$target/scripts/guard-lifecycle.sh"
 
 printf 'Installed the latest OpenCode SWE release in %s.\n' "$target"

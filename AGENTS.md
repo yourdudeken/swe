@@ -31,7 +31,13 @@ Quality bar: [docs/SWE-STANDARD.md](docs/SWE-STANDARD.md) (Definition of Done, r
 | `code-reviewer` | subagent | Adversarial review |
 | `architect` | subagent | Design tradeoffs (anti-overengineering) |
 | `security-reviewer` | subagent | Evidence-backed security findings |
+| `threat-modeler` | subagent | Pre-implementation assets, trust boundaries, and abuse cases |
 | `performance-engineer` | subagent | Evidence-backed performance findings |
+| `accessibility-reviewer` | subagent | UI accessibility and inclusive interaction review |
+| `data-reviewer` | subagent | Privacy, persisted data, migration, backup, and restore review |
+| `observability-engineer` | subagent | Logs, metrics, traces, alerts, and SLO review |
+| `release-engineer` | subagent | Release readiness, rollout, rollback, and artifact review |
+| `incident-responder` | subagent | Production incident mitigation and root-cause coordination |
 | `git-agent` | subagent | Safe git hygiene / commits when asked |
 | `dependency-agent` | subagent | Package/API upgrades |
 | `documentation-agent` | subagent | Docs synced to behavior |
@@ -50,7 +56,11 @@ Built-in OpenCode agents (`build`, `plan`, `explore`, …) remain available; pre
 
 **Quality:** `code-review`, `error-handling-review`, `security-review`, `performance-review`
 
+**Production quality:** `threat-modeling`, `accessibility-review`, `privacy-data-review`, `contract-testing`, `observability-review`, `release-readiness`, `incident-response`, `chaos-resilience-review`
+
 **Git:** `git-hygiene`, `pr-preparation`
+
+**Documentation:** `documentation-sync`
 
 ## Slash commands
 
@@ -67,6 +77,14 @@ Built-in OpenCode agents (`build`, `plan`, `explore`, …) remain available; pre
 - `/swe-explore` — repository mapping
 - `/swe-ci` — CI/build failure
 - `/swe-pr` — package for review/PR
+- `/swe-threat-model` — pre-implementation threat model
+- `/swe-release` — release readiness and rollback review
+- `/swe-incident` — production incident response
+- `/swe-ops-review` — observability, resilience, and operational review
+- `/swe-accessibility` — UI accessibility review
+- `/swe-contract` — public contract compatibility review
+- `/swe-docs` — synchronize documentation with behavior
+- `/swe-adr` — record or review an architecture decision
 
 Mid-turn stop: press **Esc** (`session_interrupt`).
 
@@ -81,4 +99,8 @@ Mid-turn stop: press **Esc** (`session_interrupt`).
 - `.opencode/instructions/spec-plan-build.md`
 - `.opencode/instructions/interrupt.md`
 
-Workflows: `.opencode/workflows/` (includes `spec-plan-build.md`).
+Use `bash scripts/validate.sh` to validate the complete customization inventory and
+`bash scripts/guard-lifecycle.sh` for build, diff, secret, and success preflights.
+
+Commands are canonical under `.opencode/commands/`; do not duplicate them in
+`opencode.jsonc`. Workflows live under `.opencode/workflows/`.

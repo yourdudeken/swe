@@ -15,8 +15,26 @@ permission:
     "git push*": deny
     "git reset --hard*": deny
     "git clean*": deny
+    "git checkout*": deny
+    "git switch*": deny
+    "git branch -D*": deny
+    "curl*": ask
+    "wget*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "psql*": ask
+    "kubectl*": ask
+    "terraform apply*": ask
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
+    "rm -rf .git*": deny
   task:
-    "*": allow
+    "spec-writer": allow
+    "plan-writer": allow
+    "spec-plan": allow
+    "repo-explorer": allow
+    "architect": allow
     "swe": deny
     "swe-plan": deny
   skill:

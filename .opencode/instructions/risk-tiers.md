@@ -27,6 +27,9 @@ Examples: security-sensitive, data destruction risk, production incident, irreve
 **Process:** T3 + explicit rollback + **`@security-reviewer`** when trust boundaries involved + caution on destructive ops.  
 **Prefer:** smallest fix that stops bleeding; defer refactors.
 
+T4 also applies to production incidents, destructive data operations, release or
+deployment changes, payment/PII paths, and changes whose rollback is unverified.
+
 ## Blast-radius questions (upgrade tier if “yes”)
 
 - Could this break other packages/services/clients?

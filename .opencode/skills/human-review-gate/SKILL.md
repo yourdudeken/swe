@@ -22,7 +22,7 @@ Enforce a hard stop so agents cannot silently proceed past specs or plans withou
 ## Procedure
 
 1. Ensure artifact STATUS is not already `approved`.
-2. Set STATUS to `human_review` (write the file).
+2. Set STATUS to `human_review` (write the file). Use `scripts/guard-lifecycle.sh status <file> human_review` when available.
 3. Emit the **gate package** (below) to the user.
 4. **Stop** — no further Task launches, no plans/build, no “I’ll continue anyway”.
 5. Wait for an explicit developer reply.
@@ -62,7 +62,7 @@ I will not proceed until you reply.
 
 | Reply | Agent action |
 |-------|----------------|
-| `approve` / “LGTM” / “approved” | Set STATUS `approved`; proceed to next lifecycle phase only |
+| `approve` / “LGTM” / “approved” | Set `OPENCODE_HUMAN_APPROVAL=1` for the explicit developer response, then set STATUS `approved`; proceed to next lifecycle phase only |
 | `changes: …` | STATUS `changes_requested`; revise; self-review; gate again |
 | `reject: …` | STATUS `draft` or stop; do not write the next phase |
 | Ambiguous | Ask which of the three; do not assume approve |

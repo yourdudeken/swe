@@ -27,8 +27,9 @@ curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/uninst
 ```
 
 Both install/update commands operate on the current directory by default. They download the
-latest release archive and manage only `opencode.jsonc`, `AGENTS.md`, and
-`.opencode/`; all other files in the project are preserved. Existing
+latest release archive and manage only `opencode.jsonc`, `AGENTS.md`, `.opencode/`,
+and the two pack guard scripts under `scripts/`; all other files in the project
+are preserved. Existing
 `opencode.json`/`opencode.jsonc` and `AGENTS.md` files are never overwritten;
 the pack config is saved as `opencode.swe.jsonc` for manual merging when those
 files already exist. Existing
@@ -51,11 +52,14 @@ If `$TARGET` already has `opencode.json` / `opencode.jsonc`, **merge** rather th
 - Append all `.opencode/instructions/*.md` paths to `instructions` (protocol, delegation, verification, definition-of-done, risk-tiers, change-discipline, spec-plan-build, interrupt)
 - Keep any existing provider/model settings
 
+Commands are canonical in `.opencode/commands/` and are discovered from there;
+do not duplicate command definitions in `opencode.jsonc`. Copy `scripts/` as well
+when using lifecycle guards in the target project.
+
 Then:
 
 ```bash
 cd "$TARGET"
-opencode agent list    # should show swe + specialists
 opencode
 ```
 
@@ -94,12 +98,18 @@ Prefer copying `instructions/` into `~/.config/opencode/instructions/` so paths 
 ## Verify discovery
 
 ```bash
-opencode agent list
+opencode run --agent swe "Report the available SWE workflow entry points."
 ```
 
-You should see primaries `swe`, `swe-build`, and `swe-plan`, plus subagents such as `spec-writer`, `plan-writer`, `debugger`, `code-reviewer`, `repo-explorer`, etc.
+You should see primaries `swe`, `swe-build`, and `swe-plan`, plus specialists
+including `spec-writer`, `plan-writer`, `debugger`, `code-reviewer`,
+`threat-modeler`, `release-engineer`, `incident-responder`,
+`observability-engineer`, `data-reviewer`, and `accessibility-reviewer`.
 
-In a session, skills appear via the `skill` tool (`repository-mapping`, `verification-loop`, …). Slash commands appear as `/swe-fix`, `/swe-feature`, …
+In a session, skills appear via the `skill` tool (`repository-mapping`, `verification-loop`, …). Slash commands appear as `/swe-fix`, `/swe-feature`, `/swe-release`, and `/swe-threat-model`.
+
+Validate the installed definitions with `bash scripts/validate.sh` and run
+`bash scripts/guard-lifecycle.sh diff` before reporting a change complete.
 
 ## Using alongside built-in agents
 

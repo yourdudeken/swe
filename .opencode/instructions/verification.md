@@ -24,6 +24,12 @@ Skip layers that do not apply to the repository or change. Prefer the **fastest 
 3. Prefer project scripts (`npm test`, `pnpm lint`, `make test`) over ad-hoc invocations.
 4. Run the narrowest failing/related test first; broaden after it passes.
 
+For production-facing work, add operational verification: confirm logs, metrics,
+traces, alerts, and failure signals are actionable and do not expose secrets or
+unnecessary PII. For public contracts, run producer/consumer or equivalent
+contract checks. For UI work, run available accessibility checks and exercise
+important keyboard and dynamic-state paths.
+
 ## Pass criteria
 
 A change is "verified" only if:

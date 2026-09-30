@@ -5,7 +5,23 @@ color: "#F59E0B"
 temperature: 0.1
 permission:
   edit: allow
-  bash: allow
+  bash:
+    "*": allow
+    "curl*": ask
+    "wget*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "psql*": ask
+    "kubectl*": ask
+    "git push*": ask
+    "git reset --hard*": ask
+    "git clean*": ask
+    "git checkout*": ask
+    "git switch*": ask
+    "git branch -D*": ask
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
   task: deny
   skill:
     "*": deny

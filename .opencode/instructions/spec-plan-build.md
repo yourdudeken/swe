@@ -62,7 +62,7 @@ Developer prompt
 ```
 
 **Never** write application source during plan mode.  
-**Never** start build mode until both `specs/STATUS.md` and `plans/STATUS.md` say `approved` (or the developer explicitly waives in writing).  
+**Never** start build mode until both `specs/STATUS.md` and `plans/STATUS.md` say `approved` (or the developer explicitly waives in writing). Use `scripts/guard-lifecycle.sh build` as the deterministic preflight when the target project includes this pack.
 **Never** invent requirements after approval — change requests go through the gate again.
 
 ## STATUS.md contract
@@ -105,6 +105,7 @@ Load skill `human-review-gate` for the exact stop/message format.
 - Every plan milestone must cite spec sections (e.g. `specs/03-functional-requirements.md#FR-12`).
 - Build steps check off `plans/08-build-checklist.md`.
 - If implementation discovers a requirement gap: **do not silently expand scope** — propose a spec amendment and re-enter the human gate (or get explicit waiver).
+- Agents must not write `approved` into STATUS files. Approval is a human action; automated checks may only reject invalid transitions.
 
 ## Interrupt & resume
 

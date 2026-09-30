@@ -12,6 +12,14 @@ permission:
     "git reset --hard*": ask
     "git clean*": ask
     "git push*": ask
+    "curl*": ask
+    "wget*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
+    "rm -rf .git*": deny
   task: deny
   skill:
     "*": deny

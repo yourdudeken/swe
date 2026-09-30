@@ -37,7 +37,8 @@ for candidate in \
   "$target/.opencode/agents/swe.md" \
   "$target/.opencode/agents/swe-build.md" \
   "$target/.opencode/commands/swe-fix.md" \
-  "$target/.opencode/instructions/swe-protocol.md"; do
+  "$target/.opencode/instructions/swe-protocol.md" \
+  "$target/scripts/guard-lifecycle.sh"; do
   if [[ -e "$candidate" ]]; then
     pack_marker=1
     break
@@ -47,6 +48,7 @@ done
 if (( pack_marker == 1 )); then
   rm -rf "$target/.opencode"
   printf 'Removed %s\n' "$target/.opencode"
+  rm -f "$target/scripts/validate.sh" "$target/scripts/guard-lifecycle.sh"
 fi
 
 if [[ -f "$target/AGENTS.md" ]] && grep -Eq 'OpenCode SWE|swe-build|swe-plan|@repo-explorer' "$target/AGENTS.md" >/dev/null 2>&1; then

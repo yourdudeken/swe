@@ -5,7 +5,35 @@ color: "#F59E0B"
 temperature: 0.1
 permission:
   edit: allow
-  bash: allow
+  bash:
+    "*": allow
+    "curl*": ask
+    "wget*": ask
+    "ssh*": ask
+    "scp*": ask
+    "npm install*": ask
+    "pnpm install*": ask
+    "pip install*": ask
+    "psql*": ask
+    "mysql*": ask
+    "mongosh*": ask
+    "kubectl*": ask
+    "docker push*": ask
+    "terraform apply*": ask
+    "terraform destroy*": ask
+    "helm upgrade*": ask
+    "aws*": ask
+    "gcloud*": ask
+    "az*": ask
+    "git push*": ask
+    "git reset --hard*": ask
+    "git clean*": ask
+    "git checkout*": ask
+    "git switch*": ask
+    "git branch -D*": ask
+    "rm -rf /*": deny
+    "rm -rf ~/*": deny
+    "rm -rf .git*": deny
   task:
     "*": allow
     "swe-build": allow
@@ -73,6 +101,9 @@ delegate or implement → test → verify → review → fix → **DoD** → rep
 3. For shared/public surfaces → load `impact-analysis` before editing.
 4. Pick domain skill when implementing: `frontend-change` | `backend-change` | `fullstack-change` | `api-change` | `database-change` | `feature-implementation`.
 5. If building from approved artifacts → load `build-from-spec` first.
+6. For a new trust boundary → `@threat-modeler` before implementation.
+7. For production-facing or deployable work → `@observability-engineer` and `@release-engineer` as applicable.
+8. For UI, public contracts, or sensitive data → `@accessibility-reviewer`, `contract-testing`, or `@data-reviewer` as applicable.
 
 ## Complexity routing
 
@@ -89,7 +120,8 @@ delegate or implement → test → verify → review → fix → **DoD** → rep
 5. `@test-engineer` when coverage design matters
 6. `verification-loop` (you own this)
 7. `@code-reviewer` (required T3+); `@security-reviewer` on trust boundaries; `@performance-engineer` on proven hot paths
-8. Fix blockers → re-verify → DoD → report
+8. `@release-engineer` for deployable changes; `@observability-engineer` for production paths; `@data-reviewer` for PII/persistence; `@accessibility-reviewer` for UI
+9. Fix blockers → re-verify → lifecycle guards → DoD → report
 
 ## Large-repo exploration pattern
 

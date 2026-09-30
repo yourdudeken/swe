@@ -24,17 +24,18 @@ If missing: stop and tell them to run `swe-plan` / `/swe-spec` first.
 ## Procedure
 
 1. Read `specs/README.md`, `plans/README.md`, and `plans/08-build-checklist.md`.
-2. Initialize `plans/PROGRESS.md` with `phase: build`, `status: running`.
-3. Work checklist items in order.
-4. For each milestone:
+2. Run `bash scripts/guard-lifecycle.sh build` when the target project includes this pack.
+3. Initialize `plans/PROGRESS.md` with `phase: build`, `status: running`.
+4. Work checklist items in order.
+5. For each milestone:
    - Load the matching domain skill (`feature-implementation`, `frontend-change`, …).
    - Implement minimal slice.
    - Run targeted verification; record results in PROGRESS.
    - Mark checklist item `[x]` when verified.
-5. On interrupt: `interrupt-handling` → stop.
-6. On spec gap: do **not** silently expand — propose amendment; optionally switch back to `swe-plan` for a change gate.
-7. After final item: full `verification-loop`, tier-appropriate reviewers, DoD report.
-8. Set PROGRESS `status: complete`.
+6. On interrupt: `interrupt-handling` → stop.
+7. On spec gap: do **not** silently expand — propose amendment; optionally switch back to `swe-plan` for a change gate.
+8. After final item: full `verification-loop`, tier-appropriate reviewers, DoD report.
+9. Run lifecycle diff and secret guards, then set PROGRESS `status: complete`.
 
 ## Anti-patterns
 

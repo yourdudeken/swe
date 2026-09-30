@@ -29,6 +29,13 @@ Assign a tier early; upgrade if discovery increases blast radius.
 - User-visible / API / CLI / config contract updated → docs or changelog touched when the repo expects it.
 - Bug fix → regression test when the harness can express it.
 - Schema change → migration ordering + rollback notes (`database-change`).
+- New trust boundary or privileged operation → threat model + security review.
+- UI change → accessibility review and keyboard/runtime evidence when applicable.
+- Public contract change → compatibility matrix and contract tests when applicable.
+- Production-facing behavior → observability review for actionable success and failure signals.
+- PII or persisted-data change → privacy/data review plus backup/restore or forward-fix evidence.
+- Deployable change → release-readiness review, rollout, rollback, and release notes.
+- Incident work → mitigation evidence, timeline, root cause, and owned follow-up actions.
 - Build-from-spec → checklist items verified; no silent scope beyond approved `specs/`.
 
 ## Explicit non-done states

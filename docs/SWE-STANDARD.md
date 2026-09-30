@@ -60,7 +60,7 @@ Details: `.opencode/instructions/change-discipline.md`
 
 ### Must handle
 
-Bugs, features, refactors, tests, deps/API changes, exploration, architecture tradeoffs, debugging, performance (evidence-based), security review, CI/build failures, regressions, code review, git/PR packaging, docs sync, DB/schema, FE/BE/fullstack, **durable specs/plans with human gates**, interruptible long builds.
+Bugs, features, refactors, tests, deps/API changes, exploration, architecture tradeoffs, debugging, performance (evidence-based), security review, threat modeling, CI/build failures, regressions, code review, git/PR packaging, docs sync, DB/schema, privacy/data, accessibility, contracts, observability, resilience, release readiness, incident response, FE/BE/fullstack, **durable specs/plans with human gates**, interruptible long builds.
 
 ### How capability is provided
 
@@ -76,6 +76,19 @@ Bugs, features, refactors, tests, deps/API changes, exploration, architecture tr
 | User entry points | `/swe-*` commands |
 | Playbooks | `workflows/*` |
 | Stop / resume long runs | interrupt protocol + `/swe-interrupt` `/swe-resume` |
+| Threat modeling | `@threat-modeler` + `threat-modeling` |
+| Accessibility | `@accessibility-reviewer` + `accessibility-review` |
+| Data/privacy | `@data-reviewer` + `privacy-data-review` |
+| Contracts | `contract-testing` + `api-change` |
+| Operations | `@observability-engineer`, `@release-engineer`, `@incident-responder` |
+| Deterministic guards | `scripts/validate.sh` + `scripts/guard-lifecycle.sh` |
+
+The specialist roster is: `swe`, `swe-plan`, `swe-build`, `spec-writer`,
+`plan-writer`, `spec-plan`, `repo-explorer`, `architect`, `debugger`,
+`test-engineer`, `code-reviewer`, `security-reviewer`, `threat-modeler`,
+`performance-engineer`, `accessibility-reviewer`, `data-reviewer`,
+`observability-engineer`, `release-engineer`, `incident-responder`,
+`dependency-agent`, `git-agent`, and `documentation-agent`.
 
 ## Anti-patterns (instant fail)
 

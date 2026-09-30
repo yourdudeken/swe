@@ -23,8 +23,14 @@ The `swe` orchestrator owns the task. Specialists assist; they do not replace ju
 | Need new/regression tests or repair suite | `@test-engineer` |
 | Post-implementation independent QA | `@code-reviewer` |
 | Auth, secrets, injection, access control, XSS/SSRF | `@security-reviewer` |
+| New trust boundary or privileged design | `@threat-modeler` |
 | Design/coupling/scalability decisions | `@architect` |
 | Latency, N+1, memory, hot paths (with evidence) | `@performance-engineer` |
+| UI accessibility and inclusive interaction | `@accessibility-reviewer` |
+| PII, retention, deletion, backup, restore, or data migration | `@data-reviewer` |
+| Logs, metrics, traces, alerts, SLOs, production diagnosability | `@observability-engineer` |
+| Release, rollout, rollback, artifacts, deployment readiness | `@release-engineer` |
+| Production outage or severe regression | `@incident-responder` |
 | Messy git state, commit prep (when asked), conflicts | `@git-agent` |
 | Version bumps, breaking API of deps | `@dependency-agent` |
 | Behavior changed and docs must track | `@documentation-agent` |
@@ -69,5 +75,11 @@ Prefer loading a skill (`skill` tool) over inventing process:
 - Implementation → `feature-implementation`, `frontend-change`, `backend-change`, `fullstack-change`, `api-change`, `database-change`, `focused-refactor`
 - Quality → `verification-loop`, `code-review`, `error-handling-review`, `security-review`, `performance-review`, `test-engineering`
 - Git/PR → `git-hygiene`, `pr-preparation`
+- Security design → `threat-modeling`, `security-review`
+- Operations → `release-readiness`, `incident-response`, `observability-review`, `chaos-resilience-review`
+- Data/privacy → `privacy-data-review`, `database-change`
+- Contracts → `contract-testing`, `api-change`
+- UI quality → `accessibility-review`
+- Documentation → `documentation-sync`
 
 Load only skills needed for the current phase. Risk tier decides whether `@code-reviewer` / `@security-reviewer` are mandatory.

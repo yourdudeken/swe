@@ -47,6 +47,27 @@ OpenCode subagents cost context and latency. This pack keeps **strong orchestrat
 
 Git, dependency, and documentation remain separate because their failure modes are distinct (data loss, lockfile breakage, doc drift).
 
+The quality and operations specialists are deliberately read-only by default:
+
+| Agent | Responsibility |
+|-------|----------------|
+| `repo-explorer` | Repository structure and conventions |
+| `architect` | Boundaries, coupling, and design tradeoffs |
+| `debugger` | Reproduction, root cause, and minimal fixes |
+| `test-engineer` | Focused behavioral and regression tests |
+| `code-reviewer` | Independent correctness and compatibility review |
+| `security-reviewer` | Post-change vulnerability review |
+| `threat-modeler` | Pre-change trust-boundary and abuse-case review |
+| `performance-engineer` | Evidence-backed performance review |
+| `accessibility-reviewer` | Inclusive UI behavior review |
+| `data-reviewer` | Privacy, persistence, migration, and recovery review |
+| `observability-engineer` | Production diagnosability and telemetry review |
+| `release-engineer` | Release, rollout, rollback, and artifact readiness |
+| `incident-responder` | Incident mitigation and root-cause coordination |
+| `dependency-agent` | Dependency compatibility and migration |
+| `git-agent` | Git state and safe commit preparation |
+| `documentation-agent` | Documentation synchronization |
+
 ## Spec → Plan → Build
 
 Protocol: `.opencode/instructions/spec-plan-build.md`  
@@ -133,6 +154,11 @@ Prompt → Specs → Self-review → Human → Plans → Self-review → Human �
 ```
 
 Playbooks: `.opencode/workflows/*.md`.
+
+Current playbooks include `spec-plan-build`, `bug-fix`, `ci-failure`,
+`dependency-upgrade`, `feature`, `fullstack`, `pr`, `refactor`, `threat-model`,
+`release`, `incident-response`, `migration`, `observability`, `accessibility`,
+`contract-change`, and `adr`.
 
 ## Extending
 
