@@ -50,13 +50,16 @@ plans before building.
 See [Usage](docs/USAGE.md) for the command reference, workflow, and project
 layout.
 
-Validate the installed system and run its local guards with:
+When contributing to this repository, validate the definitions and run the local
+guards with:
 
 ```bash
 bash scripts/validate.sh
 bash scripts/guard-lifecycle.sh diff
 bash scripts/guard-lifecycle.sh secrets
 ```
+
+These maintainer/CI scripts are not required in projects where the pack is installed.
 
 Use `/swe-threat-model`, `/swe-release`, `/swe-incident`, `/swe-ops-review`,
 `/swe-accessibility`, and `/swe-contract` for production-facing quality gates.
