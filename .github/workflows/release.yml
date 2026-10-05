@@ -52,8 +52,6 @@ jobs:
           mkdir -p release
           cp opencode.jsonc AGENTS.md release/
           cp -a .opencode release/
-          mkdir -p release/scripts
-          cp scripts/validate.sh scripts/guard-lifecycle.sh release/scripts/
           tar -czf opencode-swe.tar.gz -C release .
 
       - name: Create GitHub release

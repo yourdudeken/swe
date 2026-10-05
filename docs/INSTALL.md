@@ -27,12 +27,13 @@ curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/uninst
 ```
 
 Both install/update commands operate on the current directory by default. They download the
-latest release archive and manage only `opencode.jsonc`, `AGENTS.md`, `.opencode/`,
-and the two pack guard scripts under `scripts/`; all other files in the project
-are preserved. Existing
-`opencode.json`/`opencode.jsonc` and `AGENTS.md` files are never overwritten;
-the pack config is saved as `opencode.swe.jsonc` for manual merging when those
-files already exist. Existing
+latest release archive and manage only `opencode.json`, `opencode.jsonc`, `AGENTS.md`,
+and `.opencode/`; all other files in the project are preserved. If `opencode.json`
+already exists, the installer updates it in place by adding the pack's default agent,
+instructions, permissions, and built-in agent descriptions without replacing existing
+settings. Existing `opencode.jsonc` and `AGENTS.md` files are never overwritten;
+for JSONC configs, the pack config is saved as `opencode.swe.jsonc` for manual merging.
+Existing
 `.opencode/` files are preserved and pack files are updated in place. Set
 `OPENCODE_SWE_TARGET=/path/to/project` to select another target directory.
 
@@ -53,8 +54,9 @@ If `$TARGET` already has `opencode.json` / `opencode.jsonc`, **merge** rather th
 - Keep any existing provider/model settings
 
 Commands are canonical in `.opencode/commands/` and are discovered from there;
-do not duplicate command definitions in `opencode.jsonc`. Copy `scripts/` as well
-when using lifecycle guards in the target project.
+do not duplicate command definitions in `opencode.jsonc`. The repository's
+`scripts/validate.sh` and `scripts/guard-lifecycle.sh` are maintainer/CI checks
+and are not included in release installs.
 
 Then:
 
@@ -108,8 +110,9 @@ including `spec-writer`, `plan-writer`, `debugger`, `code-reviewer`,
 
 In a session, skills appear via the `skill` tool (`repository-mapping`, `verification-loop`, …). Slash commands appear as `/swe-fix`, `/swe-feature`, `/swe-release`, and `/swe-threat-model`.
 
-Validate the installed definitions with `bash scripts/validate.sh` and run
-`bash scripts/guard-lifecycle.sh diff` before reporting a change complete.
+When contributing to this repository, validate definitions with
+`bash scripts/validate.sh` and run `bash scripts/guard-lifecycle.sh diff` before
+reporting a change complete. These scripts are not required in installed projects.
 
 ## Using alongside built-in agents
 
