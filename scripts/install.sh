@@ -1,6 +1,39 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+usage() {
+  cat <<'EOF'
+Usage: install.sh [--update] [--help]
+
+Install or update the OpenCode SWE pack in the current project (or
+OPENCODE_SWE_TARGET). --update refreshes an existing installation without
+replacing existing project config files.
+EOF
+}
+
+case "${1-}" in
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  --update)
+    update_mode=1
+    shift
+    ;;
+  "")
+    update_mode=0
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+ esac
+
+if [[ $# -gt 0 ]]; then
+  usage >&2
+  exit 1
+fi
+
 readonly repository="${OPENCODE_SWE_REPOSITORY:-yourdudeken/swe}"
 readonly release_url="https://github.com/${repository}/releases/latest/download/opencode-swe.tar.gz"
 readonly target="${OPENCODE_SWE_TARGET:-$PWD}"
