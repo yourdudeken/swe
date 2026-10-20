@@ -80,7 +80,9 @@ for name in "${!commands[@]}"; do
   [[ "$(head -n 1 "$path")" == '---' ]] || fail "command missing frontmatter: $path"
   [[ -n "$(frontmatter_value description "$path")" ]] || fail "command missing description: $path"
   target="$(frontmatter_value agent "$path")"
-  [[ -n "${agents[$target]+x}" ]] || fail "command targets missing agent '$target': $path"
+  if [[ -n "$target" ]]; then
+    [[ -n "${agents[$target]+x}" ]] || fail "command targets missing agent '$target': $path"
+  fi
 done
 
 for name in "${!workflows[@]}"; do
@@ -105,7 +107,7 @@ done < <(
 )
 
 while IFS= read -r target; do
-  [[ -n "${agents[$target]+x}" ]] || fail "command targets missing agent: $target"
+  [[ -z "$target" || -n "${agents[$target]+x}" ]] || fail "command targets missing agent: $target"
 done < <(
   for path in .opencode/commands/*.md; do frontmatter_value agent "$path"; done |
     sort -u
