@@ -1,8 +1,9 @@
 ---
 description: Interrupt the current agent run — checkpoint progress and stop cleanly
+agent: swe
 ---
 
-INTERRUPT now (run in the current active agent: `swe`, `swe-build`, or `swe-plan`).
+INTERRUPT now.
 
 $ARGUMENTS
 
@@ -11,4 +12,5 @@ $ARGUMENTS
 3. Record `status: interrupted`, last completed step, next step, files touched, and reason.
 4. Do not start new implementation or planning work in this turn.
 5. Reply with a short interrupted summary and how to resume (`/swe-resume`).
-6. Do **not** switch agents. Continue/stop in the current agent context.
+
+If the active primary should be `swe-plan`, still checkpoint the same way; do not continue the runaway task.
