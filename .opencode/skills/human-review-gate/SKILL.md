@@ -22,7 +22,7 @@ Enforce a hard stop so agents cannot silently proceed past specs or plans withou
 ## Procedure
 
 1. Ensure artifact STATUS is not already `approved`.
-2. Set STATUS to `human_review` (write the file). Use `scripts/guard-lifecycle.sh status <file> human_review` when available.
+2. Set STATUS to `human_review` (write the file).
 3. Emit the **gate package** (below) to the user.
 4. **Stop** — no further Task launches, no plans/build, no “I’ll continue anyway”.
 5. Wait for an explicit developer reply.

@@ -62,7 +62,7 @@ Developer prompt
 ```
 
 **Never** write application source during plan mode.  
-**Never** start build mode until both `specs/STATUS.md` and `plans/STATUS.md` say `approved` (or the developer explicitly waives in writing). Use `scripts/guard-lifecycle.sh build` as the deterministic preflight when the target project includes this pack.
+**Never** start build mode until both `specs/STATUS.md` and `plans/STATUS.md` say `approved` (or the developer explicitly waives in writing). Verify both STATUS files directly before proceeding.
 **Never** invent requirements after approval — change requests go through the gate again.
 
 ## STATUS.md contract

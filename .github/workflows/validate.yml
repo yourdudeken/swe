@@ -16,7 +16,9 @@ jobs:
       - name: Validate definitions
         run: bash scripts/validate.sh
       - name: Validate shell scripts
-        run: bash -n scripts/validate.sh scripts/guard-lifecycle.sh
+        run: bash -n scripts/validate.sh scripts/guard-lifecycle.sh scripts/install.sh scripts/uninstall.sh scripts/test-lifecycle.sh
+      - name: Test install/update/uninstall lifecycle
+        run: bash scripts/test-lifecycle.sh
       - name: Run lifecycle guards
         run: |
           bash scripts/guard-lifecycle.sh diff

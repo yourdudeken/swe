@@ -99,8 +99,5 @@ Mid-turn stop: press **Esc** (`session_interrupt`).
 - `.opencode/instructions/spec-plan-build.md`
 - `.opencode/instructions/interrupt.md`
 
-Use `bash scripts/validate.sh` to validate the complete customization inventory and
-`bash scripts/guard-lifecycle.sh` for build, diff, secret, and success preflights.
-
 Commands are canonical under `.opencode/commands/`; do not duplicate them in
 `opencode.jsonc`. Workflows live under `.opencode/workflows/`.

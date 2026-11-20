@@ -24,7 +24,7 @@ If missing: stop and tell them to run `swe-plan` / `/swe-spec` first.
 ## Procedure
 
 1. Read `specs/README.md`, `plans/README.md`, and `plans/08-build-checklist.md`.
-2. Run `bash scripts/guard-lifecycle.sh build` when the target project includes this pack.
+2. Confirm `specs/STATUS.md` and `plans/STATUS.md` are `approved` (or a documented waiver exists).
 3. Initialize `plans/PROGRESS.md` with `phase: build`, `status: running`.
 4. Work checklist items in order.
 5. For each milestone:

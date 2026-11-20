@@ -28,14 +28,16 @@ curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/uninst
 
 Both install/update commands operate on the current directory by default. They download the
 latest release archive and manage only `opencode.json`, `opencode.jsonc`, `AGENTS.md`,
-and `.opencode/`; all other files in the project are preserved. If `opencode.json`
-already exists, the installer updates it in place by adding the pack's default agent,
-instructions, permissions, and built-in agent descriptions without replacing existing
-settings. Existing `opencode.jsonc` and `AGENTS.md` files are never overwritten;
-for JSONC configs, the pack config is saved as `opencode.swe.jsonc` for manual merging.
-Existing
-`.opencode/` files are preserved and pack files are updated in place. Set
-`OPENCODE_SWE_TARGET=/path/to/project` to select another target directory.
+and `.opencode/`; all other files in the project are preserved. When an OpenCode config
+already exists, the installer merges the pack's default agent, instructions, permissions,
+and built-in agent descriptions into that same file **in place** — it does not create an
+`opencode.swe.jsonc` side file (an untouched legacy one is removed; an edited one is kept).
+Existing keys and values are kept (except `default_agent`, which the pack sets to `swe`),
+and the file is left byte-for-byte unchanged when the pack settings are already current. If a rewrite is needed, the merged config is written as
+JSON, so comments in that file are normalized away (no settings are lost). Existing `AGENTS.md` and `.opencode/` files are preserved; stale
+maintainer-script references in an older `AGENTS.md` are removed. Set
+`OPENCODE_SWE_TARGET=/path/to/project` to select another target directory. For offline or
+CI use, `OPENCODE_SWE_ARCHIVE=/path/to/opencode-swe.tar.gz` installs from a local archive.
 
 From this repository:
 
@@ -152,4 +154,13 @@ Or override in `opencode.jsonc` under `agent.<name>.model`.
 
 ## Uninstall
 
-Remove the copied `.opencode/agents/swe.md`, `.opencode/agents/swe-build.md` (and other agents you added), skills, commands, and revert `default_agent`.
+```bash
+curl -fsSL https://raw.githubusercontent.com/yourdudeken/swe/main/scripts/uninstall.sh | bash
+```
+
+Removes only the `.opencode/` files recorded in the pack's install manifest, strips
+pack-managed keys from `opencode.jsonc` / `opencode.json`, and deletes `AGENTS.md` only
+when it is the copy this pack installed. Project-owned `AGENTS.md`, custom `.opencode/`
+files, `scripts/`, and all other files are left untouched. A legacy `opencode.swe.jsonc`
+side file is kept (it may contain manual edits); remove it manually if no longer needed.
+Set `OPENCODE_SWE_TARGET=/path/to/project` to uninstall from another directory.
