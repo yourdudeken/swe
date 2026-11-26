@@ -43,9 +43,9 @@ opencode
 ```
 
 Use `swe` for end-to-end orchestration. For implementation work, it routes to
-`swe-build`. For greenfield or larger changes, switch to `swe-plan` (or run
-`opencode run --agent swe-plan "your prompt"`) to create reviewable specs and
-plans before building.
+`swe-build`. For greenfield or larger changes, switch to `swe-plan` or use `/swe-prompt`
+(or `opencode run --agent swe-plan "your prompt"`) to turn a full prompt into
+reviewable specs and plans before building.
 
 See [Usage](docs/USAGE.md) for the command reference, workflow, and project
 layout.
