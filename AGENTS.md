@@ -65,8 +65,6 @@ Built-in OpenCode agents (`build`, `plan`, `explore`, …) remain available; pre
 ## Slash commands
 
 - `/swe-prompt` — plan mode: turn a full developer prompt into `specs/` + `plans/` with human gates
-- `/swe-spec` — plan mode: create `specs/` (+ `plans/` after approval)
-- `/swe-plan` — plan mode: durable `plans/` from approved specs
 - `/swe-build` — build mode: implement from approved specs/plans
 - `/swe-interrupt` — checkpoint + stop
 - `/swe-resume` — resume from PROGRESS

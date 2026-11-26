@@ -19,7 +19,7 @@ Execute approved `plans/08-build-checklist.md` against approved `specs/` with SW
 - `plans/STATUS.md` = `approved`
 - Or developer explicit waiver documented in PROGRESS
 
-If missing: stop and tell them to run `swe-plan` / `/swe-spec` first.
+If missing: stop and tell them to run `swe-plan` / `/swe-prompt` first.
 
 ## Procedure
 

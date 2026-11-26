@@ -17,7 +17,7 @@ Turn a developer prompt (+ optional repo evidence) into a durable `specs/` tree 
 
 - Greenfield projects
 - Large features needing written requirements
-- `/swe-spec` or `swe-plan` Phase A
+- `/swe-prompt` or `swe-plan` Phase A
 
 ## When NOT to use
 

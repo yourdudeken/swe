@@ -76,7 +76,7 @@ delegate or implement → test → verify → review → fix → **DoD** → rep
 
 - **Greenfield / large multi-milestone work** should already have approved `specs/` and `plans/` from **`swe-plan`**. If the user asks to “build the project” and those folders exist, route the work to `swe-build`, which loads `build-from-spec` and executes `plans/08-build-checklist.md`.
 - If they ask to build but specs/plans are missing or not `approved`, route
-  them to **`swe-plan`** (or `/swe-spec`) first — do not invent a silent full
+  them to **`swe-plan`** (or `/swe-prompt`) first — do not invent a silent full
   product spec unless they explicitly waive the lifecycle.
 - Scoped bugs/features (T0–T2 clear) may proceed without durable specs/plans.
 - Durable specs/plans are written by `swe-plan` / `@spec-writer` / `@plan-writer`, not by expanding scope mid-build.

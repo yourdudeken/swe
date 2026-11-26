@@ -16,7 +16,7 @@ Produce an executable build runbook in `plans/` that implements approved `specs/
 ## When to use
 
 - After `specs/STATUS.md` is `approved`
-- `/swe-plan` Phase B or `/swe-plan` when specs already approved
+- `/swe-prompt` Phase B or `swe-plan` when specs already approved
 
 ## When NOT to use
 

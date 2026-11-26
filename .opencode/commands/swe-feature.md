@@ -7,7 +7,7 @@ Feature request:
 
 $ARGUMENTS
 
-1. If large/greenfield, prefer `/swe-spec` (`swe-plan`) before coding.
+1. If large/greenfield, prefer `/swe-prompt` (`swe-plan`) before coding.
 2. If ambiguous, load `acceptance-criteria`.
 3. Assign risk tier; explore (`@repo-explorer` if unfamiliar).
 4. Validate requirements and plan with `@spec-plan`; use approved `plans/` if present.

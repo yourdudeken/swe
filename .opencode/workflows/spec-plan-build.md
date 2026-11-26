@@ -3,7 +3,7 @@
 Full lifecycle for greenfield projects and large features. Runs in **plan mode** (`swe-plan`) until both artifacts are human-approved, then **build mode** (`swe-build`) under the master `swe` agent.
 
 ```text
-Developer prompt (/swe-prompt, /swe-spec, or Tab → swe-plan)
+Developer prompt (/swe-prompt or Tab → swe-plan)
     ↓
 @repo-explorer (if repo exists)
     ↓

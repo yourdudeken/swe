@@ -33,8 +33,6 @@ Useful slash commands in the OpenCode TUI:
 | Command | Purpose |
 |---------|---------|
 | `/swe-prompt <prompt>` | Turn a full developer prompt into specs, pause for approval, then plans |
-| `/swe-spec <prompt>` | Create specs, pause for approval, then create plans |
-| `/swe-plan <prompt>` | Create plans from approved specs |
 | `/swe-build` | Implement approved plans |
 | `/swe-fix` | Investigate and fix a bug |
 | `/swe-feature` | Deliver a feature |
@@ -52,7 +50,7 @@ Useful slash commands in the OpenCode TUI:
 Use the durable workflow for greenfield work and changes with substantial
 scope:
 
-1. Start `swe-plan`, `/swe-prompt`, or `/swe-spec`.
+1. Start `swe-plan` or `/swe-prompt`.
 2. Review and approve the generated files under `specs/`.
 3. Review and approve the generated files under `plans/`.
 4. Switch to `swe-build` or run `/swe-build`; `swe` remains the master overseer.
